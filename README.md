@@ -1,35 +1,31 @@
+---
+title: PDF Q&A System
+emoji: 📄
+colorFrom: blue
+colorTo: green
+sdk: gradio
+sdk_version: 4.44.1
+app_file: app.py
+pinned: false
+---
+
 # PDF Q&A System
 
 A Retrieval-Augmented Generation (RAG) system that answers questions
-about uploaded PDF documents using document embeddings, FAISS vector
-search, and a Hugging Face language model.
+about uploaded PDF documents using FAISS vector search and Groq API.
+
+## Features
+- Upload multiple PDFs at once
+- Answers grounded in document content
+- Shows which document each answer came from
+- Says "I don't know" for out-of-scope questions
 
 ## How it works
-1. PDF is uploaded and split into chunks (~600 characters each)
-2. Each chunk is converted into a vector embedding
-3. When a question is asked, the most relevant chunks are retrieved
-4. A language model generates an answer grounded in those chunks
-5. If the answer isn't in the document, the system says "I don't know"
-
-## Setup
-pip install -r requirements.txt
-python app.py
-
-## Tech stack
-- LangChain (document loading, chunking, retrieval)
-- sentence-transformers/all-MiniLM-L6-v2 (embeddings)
-- FAISS (vector similarity search)
-- google/flan-t5-large (answer generation)
-- Gradio (interactive UI)
-
-## Performance
-- Processing time: ~5-30s depending on document length
-- Works best with typed/printed PDFs
-- Tested on documents up to 50+ pages
+1. Upload one or more PDF documents
+2. Ask questions about their content
+3. Get answers with source attribution
 
 ## Known Limitations
-- Tables in PDFs may extract poorly due to layout flattening
-- List-based questions may return incomplete answers (model size limitation)
-- Handwritten/scanned PDFs produce noisy answers due to OCR quality
-- Best suited for factual, definition-style questions
-- Requires GPU for reasonable processing speed
+- Tables in PDFs may extract poorly
+- Works best with typed/printed PDFs
+- First upload may take 30-60 seconds
