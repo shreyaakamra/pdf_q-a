@@ -8,5 +8,4 @@ transformers
 gradio==4.44.1
 torch
 accelerate
-pydub==0.25.1
 groq
